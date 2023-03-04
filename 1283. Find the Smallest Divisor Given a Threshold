@@ -1,0 +1,43 @@
+bool check(vector<int> &nums, int mid, int k){
+    if (mid == 0) return false;
+    float div = 0;
+    for(int i=0; i<nums.size(); i++) {
+        if( nums[i] == 0);
+        else{
+            if(float(nums[i]) / float(mid) >0  and nums[i]%mid!=0){
+                int result = (nums[i] / mid) + 1;
+                div = div + result ;
+            }
+            else{
+                 div += (nums[i] / mid);
+            }
+        }
+        
+    }
+    if(div>float(k)){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+class Solution {
+public:
+    int smallestDivisor(vector<int>& nums, int threshold) {
+        int ans;
+        int start = 0;
+        int end = *max_element(nums.begin(),nums.end());
+        while(start <= end){
+            int mid = start + (end - start) / 2 ;
+            if( check( nums, mid, threshold) ){
+                ans = mid;
+                end = mid-1;
+            }
+            else{
+                start = mid + 1;
+            }
+        }
+        return ans;
+    }
+};
