@@ -1,0 +1,44 @@
+Problem Link - https://leetcode.com/problems/missing-number/
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        // Better Solution using hashing.
+
+        // hashing can be implemented by c++ stl by using two ways : map or unordered_map 
+        int n = nums.size();
+        unordered_map<int,int>mp;
+        for(int i = 0; i <= n; i++) {
+            mp[i] = 0;
+        }
+
+        for(int i=0; i<n; i++){
+            mp[nums[i]]=1;
+        }
+
+        for(auto it:mp){
+            if(it.second==0){
+                return it.first;
+            }
+        }
+        return 0;
+
+
+
+        // Optimal Solution
+
+        // int n=nums.size();
+        // int xor1=0;
+        // int xor2=0;
+        // for(int i=1; i<n+1; i++){
+        //     xor1+=i;
+        // }
+        // for(int i=0; i<n; i++){
+        //     xor2+=nums[i];
+        // }
+        // if(xor2-xor1 <0){
+            // return xor1-xor2;
+        // }
+        // return xor2-xor1;
+    }
+};
